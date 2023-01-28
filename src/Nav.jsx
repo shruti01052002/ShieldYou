@@ -10,7 +10,7 @@ const Nav = () => {
                 <div className="home_div">
                 <NavLink exact to='/' style={{textDecoration:"none", color:"white", fontSize:"15px", fontFamily: 'League Spartan, sans-serif'}}>HOME</NavLink> &nbsp; &nbsp;
                 <NavLink to='/features' style={{textDecoration:"none", color:"white", fontSize:"15px", fontFamily: 'League Spartan, sans-serif'}}>FEATURES</NavLink> &nbsp; &nbsp;
-                <NavLink exact to='/caliberate' style={{textDecoration:"none", color:"white", fontSize:"15px", fontFamily: 'League Spartan, sans-serif'}}>CALIBERATE</NavLink> &nbsp; &nbsp;
+                <NavLink exact to='/calibrate' style={{textDecoration:"none", color:"white", fontSize:"15px", fontFamily: 'League Spartan, sans-serif'}}>CALIBRATE</NavLink> &nbsp; &nbsp;
                 <NavLink exact to='/feed' style={{textDecoration:"none", color:"white", fontSize:"15px", fontFamily: 'League Spartan, sans-serif'}}>FEED</NavLink> &nbsp; &nbsp;
                 </div>
                 <div className="login_div">

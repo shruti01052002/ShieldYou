@@ -1,9 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Calibrate from './components/Calibrate';
-import './App.css';
 import './index.css';
-// import ErrorBoundary from './components/ErrorBoundary';
 
 class App extends React.Component {
   state = {

@@ -1,13 +1,13 @@
 import React from "react";
 import Nav from "./Nav";
-import Caliber from './Caliber';
+import Trainer from "./Trainer";
 
 const Caliberate = () => {
     return (
         <>
             <div style={{ backgroundColor: 'black', height: "100vh" }}>
                 <Nav />
-                <Caliber/>
+                <Trainer/>
             </div>
         </>
     );

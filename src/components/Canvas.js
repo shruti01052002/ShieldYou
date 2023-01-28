@@ -2,23 +2,10 @@ import React from "react";
 import * as posenet from '@tensorflow-models/posenet';
 import Webcam from "react-webcam";
 import { drawKeypoints, drawSkeleton } from "./utilities";
+import { abs } from "@tensorflow/tfjs";
 
-var correct = false;
-
-// function checkMove(pose) {
-//     if (pose) {
-//         let eyeR = rightEye;
-//         let eyeL = leftEye;
-//         let earR = rightEar;
-//         let earL = leftEar;
-//         let wristR = rightWrist;
-//         let wristL = leftWrist;
-//         let shoulderR = rightShoulder;
-//         let shoulderL = leftShoulder;
-//         let elbowR = rightElbow;
-//         let elbowL = leftElbow;
-//     }
-// }
+let pose;
+let correct=false;
 
 export default function Canvas() {
     const webcamRef = React.useRef(null);
@@ -36,14 +23,44 @@ export default function Canvas() {
 
             webcamRef.current.video.width = videoWidth;
             webcamRef.current.video.height = videoHeight;
-            const pose = await model.estimateSinglePose(video);
+            pose = await model.estimateSinglePose(video);
             drawResult(pose, video, videoWidth, videoHeight, canvasRef);
-            // checkMove(pose)
+            isCorrectMove(pose)
         }
     };
+
+    let eyeR;
+    let eyeL;
+    let earR;
+    let earL;
+    let wristR;
+    let wristL;
+    let shoulderR;
+    let shoulderL;
+    let elbowR;
+    let elbowL;
+    function isCorrectMove(pose) {
+        if (pose) {
+            eyeR = pose.rightEye;
+            eyeL = pose.leftEye;
+            earR = pose.rightEar;
+            earL = pose.leftEar;
+            wristR = pose.rightWrist;
+            wristL = pose.leftWrist;
+            shoulderR = pose.rightShoulder;
+            shoulderL = pose.leftShoulder;
+            elbowR = pose.rightElbow;
+            elbowL = pose.leftElbow;
+        }
+        // logic 1
+    
+        // logic 2
+    
+        // logic 3
+    }
     const runPosenet = async () => {
         const model = await posenet.load({
-            inputResolution: { width: 640, height: 480 },
+            inputResolution: { width: 600, height: 420 },
             scale: 0.8,
         });
         setInterval(() => {
@@ -58,35 +75,37 @@ export default function Canvas() {
         drawKeypoints(pose["keypoints"], 0.6, ctx);
         drawSkeleton(pose["keypoints"], 0.7, ctx);
     };
+    // if(correct==true) {}
+    //     else{}
     return (
-        <div className="App">
+        <div className="canvas">
             <header className="App-header">
                 <Webcam
                     ref={webcamRef}
                     style={{
                         position: "absolute",
-                        marginLeft: "auto",
+                        marginLeft: 100,
                         marginRight: "auto",
                         left: 0,
                         right: 0,
                         textAlign: "center",
                         zindex: 9,
-                        width: 640,
-                        height: 480
+                        width: 600,
+                        height: 420
                     }}
                 />
                 <canvas
                     ref={canvasRef}
                     style={{
                         position: "absolute",
-                        marginLeft: "auto",
+                        marginLeft: 100,
                         marginRight: "auto",
                         left: 0,
                         right: 0,
                         textAlign: "center",
                         zindex: 10009,
-                        width: 640,
-                        height: 480
+                        width: 600,
+                        height: 420
                     }}
                 />
             </header>
